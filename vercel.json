@@ -1,0 +1,19 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/ilgan", "destination": "https://saju.myomyosaju.co.kr/ilgan", "permanent": true },
+    { "source": "/ilgan/:slug*", "destination": "https://saju.myomyosaju.co.kr/ilgan/:slug*", "permanent": true },
+    { "source": "/ilju", "destination": "https://saju.myomyosaju.co.kr/ilju", "permanent": true },
+    { "source": "/ilju/:slug*", "destination": "https://saju.myomyosaju.co.kr/ilju/:slug*", "permanent": true },
+    { "source": "/compatibility/:slug*", "destination": "https://saju.myomyosaju.co.kr/compatibility/:slug*", "permanent": true },
+    { "source": "/daily", "destination": "https://saju.myomyosaju.co.kr/daily", "permanent": true },
+    { "source": "/daily/:category*", "destination": "https://saju.myomyosaju.co.kr/daily/:category*", "permanent": true },
+    { "source": "/weekly", "destination": "https://saju.myomyosaju.co.kr/weekly", "permanent": true },
+    { "source": "/monthly", "destination": "https://saju.myomyosaju.co.kr/monthly", "permanent": true },
+    { "source": "/yearly", "destination": "https://saju.myomyosaju.co.kr/yearly", "permanent": true },
+    { "source": "/nextyear", "destination": "https://saju.myomyosaju.co.kr/nextyear", "permanent": true },
+    { "source": "/ask", "destination": "https://saju.myomyosaju.co.kr/ask", "permanent": true },
+    { "source": "/card", "destination": "https://saju.myomyosaju.co.kr/card", "permanent": true },
+    { "source": "/terms", "destination": "https://saju.myomyosaju.co.kr/terms", "permanent": true }
+  ]
+}
