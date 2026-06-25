@@ -1,487 +1,440 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>연봉 실수령액 계산기 2025 - 4대보험 공제 후 월급</title>
-  <meta name="description" content="연봉 입력 시 4대보험, 소득세, 지방소득세 공제 후 실제 월 실수령액을 계산해드립니다. 2025년 기준 정규직 근로자 기준." />
-  <meta name="keywords" content="연봉 실수령액, 월급 계산기, 4대보험 계산, 연봉 세후, 실수령액 계산기, 연봉 4000 실수령액" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>연봉 실수령액 계산기 2025 - 4대보험 공제 후 월급</title>
+<meta name="description" content="연봉 입력 시 4대보험, 소득세, 지방소득세 공제 후 실제 월 실수령액을 계산해드립니다. 2025년 기준 정규직 근로자 기준." />
+<meta name="keywords" content="연봉 실수령액, 월급 계산기, 4대보험 계산, 연봉 세후, 실수령액 계산기, 연봉 4000 실수령액" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9691832876771690" crossorigin="anonymous"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9691832876771690" crossorigin="anonymous"></script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --bg: #f7f8fa;
-      --card: #ffffff;
-      --primary: #2563eb;
-      --primary-light: #eff6ff;
-      --text: #111827;
-      --sub: #6b7280;
-      --border: #e5e7eb;
-      --red: #ef4444;
-      --green: #16a34a;
-      --row-hover: #f9fafb;
-    }
+:root {
+  --bg: #f7f8fa;
+  --card: #ffffff;
+  --primary: #2563eb;
+  --primary-light: #eff6ff;
+  --text: #111827;
+  --sub: #6b7280;
+  --border: #e5e7eb;
+  --red: #ef4444;
+  --green: #16a34a;
+  --row-hover: #f9fafb;
+}
 
-    body {
-      font-family: 'Pretendard', -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      padding: 0 0 80px;
-    }
+body {
+  font-family: 'Pretendard', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 0 0 80px;
+}
 
-    header {
-      background: var(--card);
-      border-bottom: 1px solid var(--border);
-      padding: 20px 24px;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-    header p {
-      font-size: 0.8rem;
-      color: var(--sub);
-      margin-top: 4px;
-    }
+header {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 24px;
+  text-align: center;
+}
+header h1 { font-size: 1.25rem; font-weight: 700; color: var(--text); }
+header p { font-size: 0.8rem; color: var(--sub); margin-top: 4px; }
 
-    .wrap {
-      max-width: 480px;
-      margin: 0 auto;
-      padding: 24px 16px 0;
-    }
+.wrap { max-width: 480px; margin: 0 auto; padding: 24px 16px 0; }
 
-    /* ─── 입력 카드 ─── */
-    .input-card {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 1px 4px rgba(0,0,0,.06);
-    }
+/* ─── 입력 카드 ─── */
+.input-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
 
-    .input-label {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--sub);
-      margin-bottom: 10px;
-      display: block;
-    }
+.input-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--sub);
+  margin-bottom: 10px;
+  display: block;
+}
 
-    .input-row {
-      display: flex;
-      align-items: center;
-      border: 2px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: border-color .15s;
-    }
-    .input-row:focus-within {
-      border-color: var(--primary);
-    }
+.input-row {
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color .15s;
+}
+.input-row:focus-within { border-color: var(--primary); }
 
-    .input-row input {
-      flex: 1;
-      border: none;
-      outline: none;
-      font-size: 1.5rem;
-      font-weight: 700;
-      font-family: inherit;
-      padding: 14px 16px;
-      color: var(--text);
-      background: transparent;
-      min-width: 0;
-    }
-    .input-row input::placeholder { color: #d1d5db; font-weight: 400; }
-    .input-row span {
-      padding: 0 16px 0 0;
-      font-size: 1rem;
-      color: var(--sub);
-      font-weight: 500;
-      white-space: nowrap;
-    }
+.input-row input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: inherit;
+  padding: 14px 16px;
+  color: var(--text);
+  background: transparent;
+  min-width: 0;
+}
+.input-row input::placeholder { color: #d1d5db; font-weight: 400; }
+.input-row span {
+  padding: 0 16px 0 0;
+  font-size: 1rem;
+  color: var(--sub);
+  font-weight: 500;
+  white-space: nowrap;
+}
 
-    /* 퀵 버튼 */
-    .quick-btns {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
-    .quick-btns button {
-      border: 1px solid var(--border);
-      background: var(--bg);
-      border-radius: 20px;
-      padding: 6px 14px;
-      font-size: 0.8rem;
-      font-family: inherit;
-      cursor: pointer;
-      color: var(--sub);
-      transition: all .15s;
-    }
-    .quick-btns button:hover,
-    .quick-btns button.active {
-      border-color: var(--primary);
-      background: var(--primary-light);
-      color: var(--primary);
-      font-weight: 600;
-    }
+/* 퀵 버튼 */
+.quick-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.quick-btns button {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-family: inherit;
+  cursor: pointer;
+  color: var(--sub);
+  transition: all .15s;
+}
+.quick-btns button:hover,
+.quick-btns button.active {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 600;
+}
 
-    /* ─── 광고 배너 자리 ─── */
-    .ad-slot {
-      margin: 20px 0;
-      background: var(--card);
-      border-radius: 12px;
-      height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #d1d5db;
-      font-size: 0.75rem;
-      border: 1px dashed var(--border);
-    }
+/* ─── 광고 배너 자리 ─── */
+.ad-slot {
+  margin: 20px 0;
+  background: var(--card);
+  border-radius: 12px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d1d5db;
+  font-size: 0.75rem;
+  border: 1px dashed var(--border);
+}
 
-    /* ─── 결과 ─── */
-    .result-section {
-      display: none;
-    }
-    .result-section.show { display: block; }
+/* ─── 결과 ─── */
+.result-section { display: none; }
+.result-section.show { display: block; }
 
-    /* 핵심 요약 */
-    .summary-card {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 1px 4px rgba(0,0,0,.06);
-      margin-top: 16px;
-    }
+/* 핵심 요약 */
+.summary-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  margin-top: 16px;
+}
 
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 16px;
-    }
-    .summary-row:last-child { margin-bottom: 0; }
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
+.summary-row:last-child { margin-bottom: 0; }
 
-    .summary-label {
-      font-size: 0.875rem;
-      color: var(--sub);
-      font-weight: 500;
-    }
-    .summary-amount {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .summary-amount.take-home {
-      color: var(--primary);
-      font-size: 1.75rem;
-    }
+.summary-label { font-size: 0.875rem; color: var(--sub); font-weight: 500; }
+.summary-amount { font-size: 1.5rem; font-weight: 700; color: var(--text); }
+.summary-amount.take-home { color: var(--primary); font-size: 1.75rem; }
 
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 16px 0;
-    }
+.divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
 
-    /* 공제 내역 */
-    .deduction-card {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 20px 24px;
-      box-shadow: 0 1px 4px rgba(0,0,0,.06);
-      margin-top: 12px;
-    }
-    .deduction-title {
-      font-size: 0.875rem;
-      font-weight: 700;
-      color: var(--sub);
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .deduction-title::before {
-      content: '';
-      display: inline-block;
-      width: 3px; height: 14px;
-      background: var(--primary);
-      border-radius: 2px;
-    }
+/* 공제 내역 */
+.deduction-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  margin-top: 12px;
+}
+.deduction-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--sub);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.deduction-title::before {
+  content: '';
+  display: inline-block;
+  width: 3px; height: 14px;
+  background: var(--primary);
+  border-radius: 2px;
+}
 
-    .deduction-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 9px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .deduction-row:last-child { border-bottom: none; }
-    .deduction-name {
-      font-size: 0.875rem;
-      color: var(--text);
-    }
-    .deduction-rate {
-      font-size: 0.75rem;
-      color: #9ca3af;
-      margin-left: 4px;
-    }
-    .deduction-amount {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--red);
-    }
-    .deduction-total-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 0 0;
-      margin-top: 4px;
-    }
-    .deduction-total-label {
-      font-size: 0.875rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .deduction-total-amount {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--red);
-    }
+.deduction-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+}
+.deduction-row:last-child { border-bottom: none; }
+.deduction-name { font-size: 0.875rem; color: var(--text); }
+.deduction-rate { font-size: 0.75rem; color: #9ca3af; margin-left: 4px; }
+.deduction-amount { font-size: 0.9rem; font-weight: 600; color: var(--red); }
+.deduction-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0 0;
+  margin-top: 4px;
+}
+.deduction-total-label { font-size: 0.875rem; font-weight: 700; color: var(--text); }
+.deduction-total-amount { font-size: 1rem; font-weight: 700; color: var(--red); }
 
-    /* 안내 문구 */
-    .notice {
-      margin-top: 16px;
-      background: #fffbeb;
-      border: 1px solid #fde68a;
-      border-radius: 10px;
-      padding: 12px 16px;
-      font-size: 0.75rem;
-      color: #92400e;
-      line-height: 1.6;
-    }
+/* 안내 문구 */
+.notice {
+  margin-top: 16px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 0.75rem;
+  color: #92400e;
+  line-height: 1.6;
+}
 
-    /* 비율 바 */
-    .ratio-bar {
-      height: 8px;
-      background: #e5e7eb;
-      border-radius: 99px;
-      overflow: hidden;
-      margin: 8px 0 16px;
-    }
-    .ratio-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #2563eb, #60a5fa);
-      border-radius: 99px;
-      transition: width .5s ease;
-    }
+/* 비율 바 */
+.ratio-bar {
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 99px;
+  overflow: hidden;
+  margin: 8px 0 16px;
+}
+.ratio-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2563eb, #60a5fa);
+  border-radius: 99px;
+  transition: width .5s ease;
+}
 
-    /* 중소기업 감면 토글 */
-    .sme-card {
-      background: var(--card);
-      border-radius: 14px;
-      padding: 16px 18px;
-      margin-top: 12px;
-      box-shadow: 0 1px 4px rgba(0,0,0,.06);
-      border: 1.5px solid var(--border);
-      transition: border-color .2s;
-    }
-    .sme-card.active { border-color: #16a34a; background: #f0fdf4; }
+/* 중소기업 감면 토글 */
+.sme-card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-top: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  border: 1.5px solid var(--border);
+  transition: border-color .2s;
+}
+.sme-card.active { border-color: #16a34a; background: #f0fdf4; }
 
-    .sme-toggle-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .sme-label-wrap { display: flex; flex-direction: column; gap: 3px; }
-    .sme-title { font-size: 0.875rem; font-weight: 700; color: var(--text); }
-    .sme-desc { font-size: 0.72rem; color: var(--sub); }
+.sme-toggle-row { display: flex; justify-content: space-between; align-items: center; }
+.sme-label-wrap { display: flex; flex-direction: column; gap: 3px; }
+.sme-title { font-size: 0.875rem; font-weight: 700; color: var(--text); }
+.sme-desc { font-size: 0.72rem; color: var(--sub); }
 
-    /* 토글 스위치 */
-    .toggle-switch { position: relative; width: 46px; height: 26px; cursor: pointer; flex-shrink: 0; }
-    .toggle-switch input { opacity: 0; width: 0; height: 0; }
-    .toggle-slider {
-      position: absolute; inset: 0;
-      background: #d1d5db; border-radius: 99px;
-      transition: background .2s;
-    }
-    .toggle-slider::before {
-      content: '';
-      position: absolute;
-      width: 20px; height: 20px;
-      left: 3px; top: 3px;
-      background: #fff;
-      border-radius: 50%;
-      transition: transform .2s;
-      box-shadow: 0 1px 3px rgba(0,0,0,.2);
-    }
-    .toggle-switch input:checked + .toggle-slider { background: #16a34a; }
-    .toggle-switch input:checked + .toggle-slider::before { transform: translateX(20px); }
+/* 토글 스위치 */
+.toggle-switch { position: relative; width: 46px; height: 26px; cursor: pointer; flex-shrink: 0; }
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-slider {
+  position: absolute; inset: 0;
+  background: #d1d5db; border-radius: 99px;
+  transition: background .2s;
+}
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 20px; height: 20px;
+  left: 3px; top: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform .2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+.toggle-switch input:checked + .toggle-slider { background: #16a34a; }
+.toggle-switch input:checked + .toggle-slider::before { transform: translateX(20px); }
 
-    .sme-options {
-      display: none;
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid #bbf7d0;
-    }
-    .sme-card.active .sme-options { display: block; }
+.sme-options {
+  display: none;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #bbf7d0;
+}
+.sme-card.active .sme-options { display: block; }
 
-    .sme-option-label { font-size: 0.78rem; color: var(--sub); margin-bottom: 8px; }
-    .sme-btns { display: flex; gap: 8px; flex-wrap: wrap; }
-    .sme-btn {
-      border: 1.5px solid var(--border);
-      background: #fff; border-radius: 20px;
-      padding: 6px 14px; font-size: 0.78rem;
-      font-family: inherit; cursor: pointer;
-      color: var(--sub); transition: all .15s;
-    }
-    .sme-btn.active {
-      border-color: #16a34a;
-      background: #dcfce7;
-      color: #15803d; font-weight: 700;
-    }
+.sme-option-label { font-size: 0.78rem; color: var(--sub); margin-bottom: 8px; }
+.sme-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.sme-btn {
+  border: 1.5px solid var(--border);
+  background: #fff; border-radius: 20px;
+  padding: 6px 14px; font-size: 0.78rem;
+  font-family: inherit; cursor: pointer;
+  color: var(--sub); transition: all .15s;
+}
+.sme-btn.active {
+  border-color: #16a34a;
+  background: #dcfce7;
+  color: #15803d; font-weight: 700;
+}
 
-    .sme-benefit-row {
-      display: flex; justify-content: space-between;
-      align-items: center; margin-top: 12px;
-      padding: 10px 12px;
-      background: #dcfce7; border-radius: 10px;
-      font-size: 0.82rem;
-    }
-    .sme-benefit-label { color: #15803d; font-weight: 600; }
-    .sme-benefit-val { color: #15803d; font-weight: 700; font-size: 0.95rem; }
+.sme-benefit-row {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-top: 12px;
+  padding: 10px 12px;
+  background: #dcfce7; border-radius: 10px;
+  font-size: 0.82rem;
+}
+.sme-benefit-label { color: #15803d; font-weight: 600; }
+.sme-benefit-val { color: #15803d; font-weight: 700; font-size: 0.95rem; }
 
-    /* 감면 적용 공제 행 */
-    .deduction-row.sme-row { background: #f0fdf4; }
-    .deduction-row.sme-row .deduction-amount { color: #16a34a; }
+/* 감면 적용 공제 행 */
+.deduction-row.sme-row { background: #f0fdf4; }
+.deduction-row.sme-row .deduction-amount { color: #16a34a; }
 
-    /* SEO용 자주 묻는 질문 */
-    .faq-section {
-      margin-top: 32px;
-    }
-    .faq-title {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: var(--text);
-    }
-    .faq-item {
-      background: var(--card);
-      border-radius: 12px;
-      margin-bottom: 8px;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,.04);
-    }
-    .faq-q {
-      font-size: 0.875rem;
-      font-weight: 600;
-      padding: 14px 16px;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      user-select: none;
-    }
-    .faq-q::after {
-      content: '▾';
-      font-size: 0.75rem;
-      color: var(--sub);
-      transition: transform .2s;
-    }
-    .faq-item.open .faq-q::after { transform: rotate(180deg); }
-    .faq-a {
-      display: none;
-      font-size: 0.8rem;
-      color: var(--sub);
-      padding: 0 16px 14px;
-      line-height: 1.7;
-    }
-    .faq-item.open .faq-a { display: block; }
+/* 계산 방법 설명 섹션 */
+.info-section {
+  margin-top: 32px;
+  background: var(--card);
+  border-radius: 12px;
+  padding: 20px 22px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  font-size: 0.875rem;
+  color: var(--text);
+  line-height: 1.75;
+}
+.info-section h2 { font-size: 1rem; font-weight: 700; margin-bottom: 12px; }
+.info-section p { color: var(--sub); margin-bottom: 12px; }
+.info-section .formula {
+  background: var(--primary-light);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+.info-section ul { padding-left: 18px; color: var(--sub); margin-bottom: 12px; }
+.info-section li { margin: 5px 0; }
 
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 0.75rem;
-      color: #9ca3af;
-      line-height: 1.8;
-    }
-    footer a { color: #9ca3af; }
-  </style>
+/* SEO용 자주 묻는 질문 */
+.faq-section { margin-top: 32px; }
+.faq-title { font-size: 1rem; font-weight: 700; margin-bottom: 12px; color: var(--text); }
+.faq-item {
+  background: var(--card);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,.04);
+}
+.faq-q {
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 14px 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+.faq-q::after {
+  content: '▾';
+  font-size: 0.75rem;
+  color: var(--sub);
+  transition: transform .2s;
+}
+.faq-item.open .faq-q::after { transform: rotate(180deg); }
+.faq-a {
+  display: none;
+  font-size: 0.8rem;
+  color: var(--sub);
+  padding: 0 16px 14px;
+  line-height: 1.7;
+}
+.faq-item.open .faq-a { display: block; }
 
-  <!-- 구조화 데이터 (SEO) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "연봉 실수령액 계산기",
-    "description": "2025년 4대보험, 소득세 공제 후 월 실수령액 계산기",
-    "url": "https://yourdomain.com",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "Web"
-  }
-  </script>
+footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  line-height: 1.8;
+}
+footer a { color: #9ca3af; }
+</style>
 
-  <style id="nav-style">
-    .calc-nav {
-      background: #1a1a2e;
-      overflow-x: auto;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      border-bottom: 2px solid rgba(255,255,255,.06);
-    }
-    .calc-nav::-webkit-scrollbar { display: none; }
-    .calc-nav-inner {
-      display: inline-flex;
-      padding: 0 8px;
-      min-width: 100%;
-    }
-    .calc-nav a {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 10px 14px;
-      text-decoration: none;
-      color: rgba(255,255,255,.5);
-      font-size: 0.68rem;
-      font-family: 'Noto Sans KR', sans-serif;
-      transition: color .15s;
-      border-bottom: 2px solid transparent;
-      white-space: nowrap;
-      gap: 2px;
-    }
-    .calc-nav a .nav-icon { font-size: 1.1rem; }
-    .calc-nav a:hover { color: rgba(255,255,255,.9); }
-    .calc-nav a.active {
-      color: #fff;
-      border-bottom-color: #f7b731;
-      font-weight: 700;
-    }
-  </style>
+<!-- 구조화 데이터 (SEO) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "연봉 실수령액 계산기",
+  "description": "2025년 4대보험, 소득세 공제 후 월 실수령액 계산기",
+  "url": "https://myomyosaju.co.kr",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web"
+}
+</script>
+
+<style id="nav-style">
+.calc-nav {
+  background: #1a1a2e;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  border-bottom: 2px solid rgba(255,255,255,.06);
+}
+.calc-nav::-webkit-scrollbar { display: none; }
+.calc-nav-inner { display: inline-flex; padding: 0 8px; min-width: 100%; }
+.calc-nav a {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: rgba(255,255,255,.5);
+  font-size: 0.68rem;
+  font-family: 'Noto Sans KR', sans-serif;
+  transition: color .15s;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  gap: 2px;
+}
+.calc-nav a .nav-icon { font-size: 1.1rem; }
+.calc-nav a:hover { color: rgba(255,255,255,.9); }
+.calc-nav a.active {
+  color: #fff;
+  border-bottom-color: #f7b731;
+  font-weight: 700;
+}
+</style>
 
 </head>
 <body>
-  <nav class="calc-nav">
-    <div class="calc-nav-inner">
-      <a href="https://salary.myomyosaju.co.kr" class="active"><span class="nav-icon">💰</span>연봉 실수령액</a>
-      <a href="https://severance.myomyosaju.co.kr"><span class="nav-icon">💼</span>퇴직금</a>
-      <a href="https://unemployment.myomyosaju.co.kr"><span class="nav-icon">📋</span>실업급여</a>
-      <a href="https://age.myomyosaju.co.kr"><span class="nav-icon">🎂</span>만나이</a>
-      <a href="https://savings.myomyosaju.co.kr"><span class="nav-icon">🏦</span>적금 이자</a>
-      <a href="https://bmi.myomyosaju.co.kr"><span class="nav-icon">⚖️</span>BMI</a>
-      <a href="https://loan.myomyosaju.co.kr"><span class="nav-icon">🏦</span>대출이자</a>
-      <a href="https://hourly.myomyosaju.co.kr"><span class="nav-icon">⏰</span>시급</a>
-    </div>
-  </nav>
-
+<nav class="calc-nav">
+  <div class="calc-nav-inner">
+    <a href="/" class="active"><span class="nav-icon">💰</span>연봉 실수령액</a>
+    <a href="https://severance.myomyosaju.co.kr"><span class="nav-icon">💼</span>퇴직금</a>
+    <a href="https://unemployment.myomyosaju.co.kr"><span class="nav-icon">📋</span>실업급여</a>
+    <a href="https://age.myomyosaju.co.kr"><span class="nav-icon">🎂</span>만나이</a>
+    <a href="https://savings.myomyosaju.co.kr"><span class="nav-icon">🏦</span>적금 이자</a>
+    <a href="https://bmi.myomyosaju.co.kr"><span class="nav-icon">⚖️</span>BMI</a>
+    <a href="https://loan.myomyosaju.co.kr"><span class="nav-icon">🏦</span>대출이자</a>
+    <a href="https://hourly.myomyosaju.co.kr"><span class="nav-icon">⏰</span>시급</a>
+  </div>
+</nav>
 
 <header>
   <h1>💰 연봉 실수령액 계산기</h1>
@@ -495,8 +448,8 @@
     <span class="input-label">연봉을 입력하세요</span>
     <div class="input-row">
       <input type="text" id="salary-input" inputmode="numeric"
-             placeholder="예) 4,000" maxlength="12"
-             oninput="formatInput(this); calc()">
+        placeholder="예) 4,000" maxlength="12"
+        oninput="formatInput(this); calc()">
       <span>만원</span>
     </div>
     <div class="quick-btns" id="quick-btns">
@@ -616,6 +569,23 @@
     </div>
   </div>
 
+  <!-- 계산 방법 설명 (콘텐츠/SEO) -->
+  <section class="info-section">
+    <h2>연봉 실수령액, 이렇게 계산됩니다</h2>
+    <p>연봉 실수령액은 회사와 계약한 세전 연봉을 12로 나눈 월 급여에서 4대보험료와 소득세·지방소득세를 공제한 금액입니다. 이 계산기는 부양가족 1인(본인), 비과세 없음을 기준으로 2025년 요율을 적용합니다.</p>
+    <p class="formula">월 실수령액 = (연봉 ÷ 12) − 국민연금 − 건강보험 − 장기요양보험 − 고용보험 − 소득세 − 지방소득세</p>
+    <p style="margin-top:12px">공제 항목별 근로자 부담 요율은 다음과 같습니다.</p>
+    <ul>
+      <li><strong>국민연금</strong> — 월 보수의 4.5% (사업주와 절반씩, 합계 9%)</li>
+      <li><strong>건강보험</strong> — 월 보수의 3.545%</li>
+      <li><strong>장기요양보험</strong> — 건강보험료의 12.95%</li>
+      <li><strong>고용보험</strong> — 월 보수의 0.9%</li>
+      <li><strong>소득세</strong> — 국세청 근로소득 간이세액표 기준 (연말정산으로 최종 정산)</li>
+      <li><strong>지방소득세</strong> — 소득세의 10%</li>
+    </ul>
+    <p>비과세 식대(월 20만원까지)나 부양가족이 있으면 공제가 줄어 실수령액이 늘어납니다. 중소기업 취업자(청년·60세 이상·장애인·경력단절여성)는 소득세 감면(최대 90%, 연 200만원 한도)을 받을 수 있으며 위 토글에서 반영할 수 있습니다. 표시되는 금액은 추정치이며, 회사 내규와 연말정산 결과에 따라 실제 금액과 차이가 날 수 있습니다.</p>
+  </section>
+
   <!-- FAQ (SEO) -->
   <div class="faq-section">
     <div class="faq-title">자주 묻는 질문</div>
@@ -644,137 +614,137 @@
 
   <footer>
     <p>본 계산기는 참고용이며 실제 급여와 다를 수 있습니다.</p>
-    <p>2025년 4대보험 요율 기준 · <a href="/privacy">개인정보처리방침</a></p>
+    <p>2025년 4대보험 요율 기준 · <a href="/about">서비스 소개</a> · <a href="/privacy">개인정보처리방침</a></p>
   </footer>
 
 </div>
 
 <script>
-  let smeEnabled = false;
-  let smeRate = 0.9; // 청년 기본
+let smeEnabled = false;
+let smeRate = 0.9; // 청년 기본
 
-  function formatInput(el) {
-    let v = el.value.replace(/[^0-9]/g, '');
-    if (v) el.value = Number(v).toLocaleString('ko-KR');
-    else el.value = '';
+function formatInput(el) {
+  let v = el.value.replace(/[^0-9]/g, '');
+  if (v) el.value = Number(v).toLocaleString('ko-KR');
+  else el.value = '';
+}
+
+function getRaw() {
+  return parseInt(document.getElementById('salary-input').value.replace(/,/g, '') || '0', 10);
+}
+
+function setQuick(val) {
+  document.getElementById('salary-input').value = val.toLocaleString('ko-KR');
+  document.querySelectorAll('.quick-btns button').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  calc();
+}
+
+function toggleSme() {
+  smeEnabled = document.getElementById('sme-toggle').checked;
+  document.getElementById('sme-card').classList.toggle('active', smeEnabled);
+  document.getElementById('row-sme-reduction').style.display = smeEnabled ? 'flex' : 'none';
+  calc();
+}
+
+function setSmeType(el, type) {
+  document.querySelectorAll('.sme-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  const rates = { youth: 0.9, senior: 0.7, disabled: 0.7, career: 0.7 };
+  smeRate = rates[type];
+  calc();
+}
+
+// ─── 소득세 간이세액표 근사 (부양가족 1인 기준) ───
+function calcIncomeTax(monthly) {
+  const annual = monthly * 12;
+  let deduction = 0;
+  if (annual <= 5000000) deduction = annual * 0.7;
+  else if (annual <= 15000000) deduction = 3500000 + (annual - 5000000) * 0.4;
+  else if (annual <= 45000000) deduction = 7500000 + (annual - 15000000) * 0.15;
+  else if (annual <= 100000000) deduction = 12000000 + (annual - 45000000) * 0.05;
+  else deduction = 14750000;
+
+  const taxable = Math.max(annual - deduction - 1500000, 0);
+  let realTax = 0;
+  if (taxable <= 14000000) realTax = taxable * 0.06;
+  else if (taxable <= 50000000) realTax = 840000 + (taxable - 14000000) * 0.15;
+  else if (taxable <= 88000000) realTax = 6240000 + (taxable - 50000000) * 0.24;
+  else if (taxable <= 150000000) realTax = 15360000 + (taxable - 88000000) * 0.35;
+  else if (taxable <= 300000000) realTax = 37060000 + (taxable - 150000000) * 0.38;
+  else if (taxable <= 500000000) realTax = 94060000 + (taxable - 300000000) * 0.40;
+  else realTax = 174060000 + (taxable - 500000000) * 0.42;
+
+  return Math.max(Math.round(realTax / 12), 0);
+}
+
+function fmt(n) { return Math.round(n).toLocaleString('ko-KR') + '원'; }
+function fmtW(n) { return Math.round(n / 10000).toLocaleString('ko-KR') + '만원'; }
+
+// ─── 계산 ───
+function calc() {
+  const annualW = getRaw();
+  if (!annualW || annualW < 100) {
+    document.getElementById('result').classList.remove('show');
+    return;
   }
 
-  function getRaw() {
-    return parseInt(document.getElementById('salary-input').value.replace(/,/g, '') || '0', 10);
+  const annual = annualW * 10000;
+  const gross = Math.round(annual / 12);
+
+  // 4대보험
+  const nps = Math.round(gross * 0.045);
+  const hi = Math.round(gross * 0.03545);
+  const ltc = Math.round(hi * 0.1295);
+  const emp = Math.round(gross * 0.009);
+
+  // 소득세 / 지방소득세
+  const incomeBefore = calcIncomeTax(gross);
+
+  // 중소기업 감면 (연 200만원 한도 → 월 166,666원 한도)
+  let smeReduction = 0;
+  let incomeAfter = incomeBefore;
+  if (smeEnabled) {
+    const maxMonthly = Math.round(2000000 / 12);
+    smeReduction = Math.min(Math.round(incomeBefore * smeRate), maxMonthly);
+    incomeAfter = Math.max(incomeBefore - smeReduction, 0);
   }
 
-  function setQuick(val) {
-    document.getElementById('salary-input').value = val.toLocaleString('ko-KR');
-    document.querySelectorAll('.quick-btns button').forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active');
-    calc();
+  const local = Math.round(incomeAfter * 0.1);
+  const totalD = nps + hi + ltc + emp + incomeAfter + local;
+  const net = gross - totalD;
+  const ratio = Math.round((net / gross) * 100);
+
+  // 렌더
+  document.getElementById('gross-monthly').textContent = fmt(gross);
+  document.getElementById('total-deduct').textContent = '-' + fmt(totalD);
+  document.getElementById('net-monthly').textContent = fmt(net);
+  document.getElementById('net-annual').textContent = fmtW(net * 12);
+  document.getElementById('ratio-bar').style.width = ratio + '%';
+
+  document.getElementById('d-nps').textContent = '-' + fmt(nps);
+  document.getElementById('d-health').textContent = '-' + fmt(hi);
+  document.getElementById('d-ltc').textContent = '-' + fmt(ltc);
+  document.getElementById('d-emp').textContent = '-' + fmt(emp);
+  document.getElementById('d-income').textContent = '-' + fmt(incomeAfter);
+  document.getElementById('d-local').textContent = '-' + fmt(local);
+  document.getElementById('d-total').textContent = '-' + fmt(totalD);
+
+  // 중소기업 감면 행
+  if (smeEnabled && smeReduction > 0) {
+    const pct = Math.round(smeRate * 100);
+    document.getElementById('income-rate-label').textContent = `(감면 후)`;
+    document.getElementById('sme-rate-label').textContent = `(${pct}% 감면, 연 200만원 한도)`;
+    document.getElementById('d-sme-reduction').textContent = '-' + fmt(smeReduction);
+    document.getElementById('sme-benefit-val').textContent = fmt(smeReduction) + ' 절약';
   }
 
-  function toggleSme() {
-    smeEnabled = document.getElementById('sme-toggle').checked;
-    document.getElementById('sme-card').classList.toggle('active', smeEnabled);
-    document.getElementById('row-sme-reduction').style.display = smeEnabled ? 'flex' : 'none';
-    calc();
-  }
+  document.getElementById('result').classList.add('show');
+}
 
-  function setSmeType(el, type) {
-    document.querySelectorAll('.sme-btn').forEach(b => b.classList.remove('active'));
-    el.classList.add('active');
-    const rates = { youth: 0.9, senior: 0.7, disabled: 0.7, career: 0.7 };
-    smeRate = rates[type];
-    calc();
-  }
-
-  // ─── 소득세 간이세액표 근사 (부양가족 1인 기준) ───
-  function calcIncomeTax(monthly) {
-    const annual = monthly * 12;
-    let deduction = 0;
-    if (annual <= 5000000)         deduction = annual * 0.7;
-    else if (annual <= 15000000)   deduction = 3500000 + (annual - 5000000) * 0.4;
-    else if (annual <= 45000000)   deduction = 7500000 + (annual - 15000000) * 0.15;
-    else if (annual <= 100000000)  deduction = 12000000 + (annual - 45000000) * 0.05;
-    else                            deduction = 14750000;
-
-    const taxable = Math.max(annual - deduction - 1500000, 0);
-    let realTax = 0;
-    if (taxable <= 14000000)       realTax = taxable * 0.06;
-    else if (taxable <= 50000000)  realTax = 840000 + (taxable - 14000000) * 0.15;
-    else if (taxable <= 88000000)  realTax = 6240000 + (taxable - 50000000) * 0.24;
-    else if (taxable <= 150000000) realTax = 15360000 + (taxable - 88000000) * 0.35;
-    else if (taxable <= 300000000) realTax = 37060000 + (taxable - 150000000) * 0.38;
-    else if (taxable <= 500000000) realTax = 94060000 + (taxable - 300000000) * 0.40;
-    else                            realTax = 174060000 + (taxable - 500000000) * 0.42;
-
-    return Math.max(Math.round(realTax / 12), 0);
-  }
-
-  function fmt(n) { return Math.round(n).toLocaleString('ko-KR') + '원'; }
-  function fmtW(n) { return Math.round(n / 10000).toLocaleString('ko-KR') + '만원'; }
-
-  // ─── 계산 ───
-  function calc() {
-    const annualW = getRaw();
-    if (!annualW || annualW < 100) {
-      document.getElementById('result').classList.remove('show');
-      return;
-    }
-
-    const annual = annualW * 10000;
-    const gross = Math.round(annual / 12);
-
-    // 4대보험
-    const nps  = Math.round(gross * 0.045);
-    const hi   = Math.round(gross * 0.03545);
-    const ltc  = Math.round(hi * 0.1295);
-    const emp  = Math.round(gross * 0.009);
-
-    // 소득세 / 지방소득세
-    const incomeBefore = calcIncomeTax(gross);
-
-    // 중소기업 감면 (연 200만원 한도 → 월 166,666원 한도)
-    let smeReduction = 0;
-    let incomeAfter = incomeBefore;
-    if (smeEnabled) {
-      const maxMonthly = Math.round(2000000 / 12);
-      smeReduction = Math.min(Math.round(incomeBefore * smeRate), maxMonthly);
-      incomeAfter = Math.max(incomeBefore - smeReduction, 0);
-    }
-
-    const local = Math.round(incomeAfter * 0.1);
-    const totalD = nps + hi + ltc + emp + incomeAfter + local;
-    const net = gross - totalD;
-    const ratio = Math.round((net / gross) * 100);
-
-    // 렌더
-    document.getElementById('gross-monthly').textContent = fmt(gross);
-    document.getElementById('total-deduct').textContent  = '-' + fmt(totalD);
-    document.getElementById('net-monthly').textContent   = fmt(net);
-    document.getElementById('net-annual').textContent    = fmtW(net * 12);
-    document.getElementById('ratio-bar').style.width     = ratio + '%';
-
-    document.getElementById('d-nps').textContent    = '-' + fmt(nps);
-    document.getElementById('d-health').textContent = '-' + fmt(hi);
-    document.getElementById('d-ltc').textContent    = '-' + fmt(ltc);
-    document.getElementById('d-emp').textContent    = '-' + fmt(emp);
-    document.getElementById('d-income').textContent = '-' + fmt(incomeAfter);
-    document.getElementById('d-local').textContent  = '-' + fmt(local);
-    document.getElementById('d-total').textContent  = '-' + fmt(totalD);
-
-    // 중소기업 감면 행
-    if (smeEnabled && smeReduction > 0) {
-      const pct = Math.round(smeRate * 100);
-      document.getElementById('income-rate-label').textContent = `(감면 후)`;
-      document.getElementById('sme-rate-label').textContent = `(${pct}% 감면, 연 200만원 한도)`;
-      document.getElementById('d-sme-reduction').textContent = '-' + fmt(smeReduction);
-      document.getElementById('sme-benefit-val').textContent = fmt(smeReduction) + ' 절약';
-    }
-
-    document.getElementById('result').classList.add('show');
-  }
-
-  function toggleFaq(el) {
-    el.classList.toggle('open');
-  }
+function toggleFaq(el) {
+  el.classList.toggle('open');
+}
 </script>
 </body>
 </html>
